@@ -26,75 +26,12 @@ module Color
     end
 
     def to_lab
-      x, y, z = to_xyz
-      xyz_to_cie_lab(x, y, z)
+      xyz_color = Color::XYZ.from_rgb(self)
+      Color::CIELab.from_xyz(xyz_color).to_a
     end
 
     def to_xyz
-      var_R = ( r / 255.0)        # R from 0 to 255
-      var_G = ( g / 255.0)        # G from 0 to 255
-      var_B = ( b / 255.0)        # B from 0 to 255
-
-      if ( var_R > 0.04045)
-        var_R = ( ( var_R + 0.055) / 1.055) ** 2.4
-      else
-        var_R = var_R / 12.92
-      end
-
-      if ( var_G > 0.04045)
-        var_G = ( ( var_G + 0.055) / 1.055) ** 2.4
-      else
-        var_G = var_G / 12.92
-      end
-
-      if ( var_B > 0.04045)
-        var_B = ( ( var_B + 0.055) / 1.055) ** 2.4
-      else
-        var_B = var_B / 12.92
-      end
-
-      var_R = var_R * 100
-      var_G = var_G * 100
-      var_B = var_B * 100
-
-      # Observer. = 2°, Illuminant = D65
-      x = var_R * 0.4124 + var_G * 0.3576 + var_B * 0.1805
-      y = var_R * 0.2126 + var_G * 0.7152 + var_B * 0.0722
-      z = var_R * 0.0193 + var_G * 0.1192 + var_B * 0.9505
-      [x, y, z]
-    end
-
-    def xyz_to_cie_lab(x, y, z)
-      ref_X =  95.047   # Observer= 2°, Illuminant= D65
-      ref_Y = 100.000
-      ref_Z = 108.883
-
-      var_X = x / ref_X
-      var_Y = y / ref_Y
-      var_Z = z / ref_Z
-
-      if ( var_X > 0.008856)
-        var_X = var_X ** ( 1.0/3.0)
-      else
-        var_X = ( 7.787 * var_X) + ( 16.0 / 116.0)
-      end
-
-      if ( var_Y > 0.008856)
-        var_Y = var_Y ** ( 1.0/3.0)
-      else
-        var_Y = ( 7.787 * var_Y) + ( 16.0 / 116.0)
-      end
-
-      if ( var_Z > 0.008856)
-        var_Z = var_Z ** ( 1.0/3.0)
-      else
-        var_Z = ( 7.787 * var_Z) + ( 16 / 116)
-      end
-
-      l = ( 116.0 * var_Y) - 16.0
-      a = 500.0 * ( var_X - var_Y)
-      b = 200.0 * ( var_Y - var_Z)
-      [l, a, b]
+      Color::XYZ.from_rgb(self).to_a
     end
 
     def to_int
