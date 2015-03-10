@@ -30,15 +30,9 @@ Or install it yourself as:
 To instantiate an RGB color
 
 ```ruby
-Color::RGB.new(r, g, b)
-
-or
-
-Color::RGB.from_array([r, g, b])
-
-or
-
-Color::RGB.from_int(rgb_int)
+Color::RGB.new(r, g, b)          # r, g, b arguments
+Color::RGB.from_array([r, g, b]) # an array of RGB values
+Color::RGB.from_int(rgb_int)     # int
 ```
 
 To convert to XYZ or CIE L*a*b*
