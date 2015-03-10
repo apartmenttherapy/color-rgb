@@ -1,7 +1,10 @@
-# Color
+# Colorkit
 
-Help with colorspace conversion from RGB to XYZ to CIE*Lab and for
-determing similarity distance between two colors using CIE76
+A set of utilities to help with dealing with RGB colors. Supporting
+
+- colorspace conversion from RGB to XYZ or CIE l*a*b*
+- determining distance between two colors using CIE76
+- storing RGB colors as integers
 
 http://en.wikipedia.org/wiki/CIE_1931_color_space
 http://en.wikipedia.org/wiki/Color_difference#CIE76
@@ -11,7 +14,7 @@ http://en.wikipedia.org/wiki/Color_difference#CIE76
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'color'
+gem 'colorkit'
 ```
 
 And then execute:
@@ -24,14 +27,65 @@ Or install it yourself as:
 
 ## Usage
 
+To instantiate an RGB color
+
+```ruby
+Color::RGB.new(r, g, b)
+
+or
+
+Color::RGB.from_array([r, g, b])
+
+or
+
+Color::RGB.from_int(rgb_int)
+```
+
+To convert to XYZ or CIE L*a*b*
+
 ```ruby
 color_rgb = Color::RGB.new(r, g, b)
-color_cie_lab = color_rgb.to_lab
+color_rgb.to_xyz
+color_rgb.to_lab
+```
+
+Or to convert to an int for storage
+
+```ruby
+color_rgb = Color::RGB.new(r, g, b)
+color_rgb.to_int
+```
+
+Or to go from an Color::RGB instance back to an array of r,g,b values
+
+```ruby
+color_rgb.to_a
+```
+
+To determine distance / similarity between two RGB colors
+
+```ruby
+rgb_one = Color::RGB.new(r, g, b)
+rgb_two = Color::RGB.new(other_r, other_g, other_b)
+
+Color::Comparison.distance(rgb_one, rgb_two)
+```
+
+If you are planning to compare rgb_one against a number of colors in sequence
+tou can instantiate a comparitor object and call compare with any other RGB
+
+```ruby
+rgb_one = Color::RGB.new(r, g, b)
+
+comparitor = Color::Comparison.new(rgb_one)
+comparitor.compare(some_other_rgb_color) # Color::RGB isntance
+comparitor.compare([r, g, b]) # array of RGB values
+
 ```
 
 ## Contributing
 
-1. Fork it ( https://github.com/[my-github-username]/color/fork )
+1. Fork it ( https://github.com/apartmenttherapy/colorkit/fork )
 2. Create your feature branch (`git checkout -b my-new-feature`)
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
