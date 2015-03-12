@@ -14,7 +14,7 @@ http://en.wikipedia.org/wiki/Color_difference#CIE76
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'colorkit'
+gem 'color-rgb'
 ```
 
 And then execute:
@@ -79,7 +79,7 @@ comparitor.compare([r, g, b]) # array of RGB values
 
 ## Contributing
 
-1. Fork it ( https://github.com/apartmenttherapy/colorkit/fork )
+1. Fork it ( https://github.com/apartmenttherapy/color-rgb/fork )
 2. Create your feature branch (`git checkout -b my-new-feature`)
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)

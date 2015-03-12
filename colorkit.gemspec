@@ -4,13 +4,13 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'color/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "colorkit"
+  spec.name          = "color-rgb"
   spec.version       = Color::VERSION
   spec.authors       = ["ramin keene"]
   spec.email         = ["raminkeene@gmail.com"]
   spec.summary       = %q{RGB color utlities conversion and color distance}
   spec.description   = %q{RGB color utilities for converting RGB color into different colorspace (CIE*Lab or XYZ), a different format, or comparing similarity of two colors}
-  spec.homepage      = "http://github.com/apartmenttherapy/colorkit"
+  spec.homepage      = "http://github.com/apartmenttherapy/color-rgb"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files -z`.split("\x0")
