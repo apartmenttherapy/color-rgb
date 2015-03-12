@@ -23,7 +23,13 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install color
+    $ gem install color-rgb
+
+then
+
+```ruby
+require 'color-rgb'
+```
 
 ## Usage
 
