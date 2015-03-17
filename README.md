@@ -1,3 +1,5 @@
+[![Code Climate](https://codeclimate.com/github/apartmenttherapy/color-rgb/badges/gpa.svg)](https://codeclimate.com/github/apartmenttherapy/color-rgb)
+
 # Colorkit
 
 A set of utilities to help with dealing with RGB colors. Supporting
