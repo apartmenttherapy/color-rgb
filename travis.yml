@@ -1,0 +1,12 @@
+language: ruby
+
+install:
+  - bundle install --retry=3
+
+rvm:
+  - ruby-head
+  - 2.1
+  - 2.2
+  - 2.0.0
+  - 1.9.3
+  - jruby-19mode
