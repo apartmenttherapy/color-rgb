@@ -8,7 +8,5 @@ addons:
     repo_token: 2430641a7445196a1ad98e0372a7bf2d0b88998bdb754c77de1831f0eb03635d
 
 rvm:
-  - ruby-head
-  - 2.1
   - 2.2
   - 2.0.0
