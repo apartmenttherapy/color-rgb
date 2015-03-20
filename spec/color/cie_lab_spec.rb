@@ -23,26 +23,26 @@ describe Color::CIELab do
   context 'l,a,b' do
     describe '#b' do
       it 'calculates l' do
-        expect(subject.l).to eq(83.58479885775868)
+        expect(subject.l.round(5)).to eq(83.58479885775868.round(5))
       end
     end
 
     describe '#a' do
       it 'calculates a' do
-        expect(subject.a).to eq(24.14966101257138)
+        expect(subject.a.round(5)).to eq(24.14966101257138.round(5))
       end
     end
 
     describe '#b' do
       it 'calculates b' do
-        expect(subject.b).to eq(3.315387151150806)
+        expect(subject.b.round(5)).to eq(3.315387151150806.round(5))
       end
     end
   end
 
   describe '#to_a' do
     it 'returns an array of l,a,b values' do
-      expect(subject.to_a).to eq([83.58479885775868, 24.14966101257138, 3.315387151150806])
+      expect(subject.to_a.map{ |val| val.round(5) } ).to eq([83.58479885775868.round(5), 24.14966101257138.round(5), 3.315387151150806.round(5)])
     end
   end
 end
