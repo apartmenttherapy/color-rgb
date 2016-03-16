@@ -3,21 +3,27 @@ require 'spec_helper'
 describe Color::Comparison do
   let(:rgb) { [12, 145, 44] }
   let(:match) { [13, 32, 55] }
-  let(:instance)    { Color::Comparison.new(rgb) }
+  let(:instance) { Color::Comparison.new(rgb) }
   let(:rgb_instance) { Color::RGB.from_array(rgb) }
 
   describe '#compare' do
-    subject{ Color::Comparison.new(rgb_instance) }
+    subject { Color::Comparison.new(rgb_instance) }
 
     it 'CIE76 distance should be 90.7247 ' do
-      expect(subject.compare(Color::RGB.from_array(match)).round(4)).to eq(90.7247)
+      expect(
+        subject.compare(
+          Color::RGB.from_array(match)
+        ).round(4)
+      ).to eq(90.7247)
     end
   end
 
   describe '.distance' do
     it 'converts rgb_color array to RGB' do
       comparitor = Color::Comparison.new(rgb)
-      expect(comparitor.instance_variable_get(:@rgb_color)).to be_an_instance_of(Color::RGB)
+      expect(
+        comparitor.instance_variable_get(:@rgb_color)
+      ).to be_an_instance_of(Color::RGB)
     end
 
     it 'converts match color array to RGB' do

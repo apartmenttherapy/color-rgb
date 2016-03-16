@@ -4,7 +4,7 @@ describe Color::CIELab do
   let(:rgb) { Color::RGB.new(255, 192, 203) }
   let(:xyz) { Color::XYZ.new(rgb) }
 
-  subject{ Color::CIELab.new(xyz) }
+  subject { Color::CIELab.new(xyz) }
 
   describe '.from_xyz' do
     it 'returns an instance of Color::CIELab' do
@@ -42,7 +42,15 @@ describe Color::CIELab do
 
   describe '#to_a' do
     it 'returns an array of l,a,b values' do
-      expect(subject.to_a.map{ |val| val.round(5) } ).to eq([83.58479885775868.round(5), 24.14966101257138.round(5), 3.315387151150806.round(5)])
+      expect(
+        subject.to_a.map { |val| val.round(5) }
+      ).to eq(
+        [
+          83.58479885775868.round(5),
+          24.14966101257138.round(5),
+          3.315387151150806.round(5)
+        ]
+      )
     end
   end
 end

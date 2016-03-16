@@ -4,7 +4,7 @@ module Color
     attr_reader :x, :y, :z
 
     def self.from_xyz(xyz_color)
-      self.new(xyz_color)
+      new(xyz_color)
     end
 
     def initialize(color)
@@ -18,7 +18,7 @@ module Color
     end
 
     def reference_x
-      95.047 # Observer= 2°, Illuminant= D65
+      95.047 # Observer= 2 degrees, Illuminant= D65
     end
 
     def reference_y
@@ -42,24 +42,24 @@ module Color
     end
 
     def l
-      ( 116.0 * var_y) - 16.0
+      (116.0 * var_y) - 16.0
     end
 
     def a
-      500.0 * ( var_x - var_y)
+      500.0 * (var_x - var_y)
     end
 
     def b
-      200.0 * ( var_y - var_z)
+      200.0 * (var_y - var_z)
     end
 
     private
 
     def calculate_var(value)
-      if ( value > 0.008856)
-        value ** ( 1.0/3.0)
+      if value > 0.008856
+        value**(1.0 / 3.0)
       else
-        ( 7.787 * value) + ( 16.0 / 116.0)
+        (7.787 * value) + (16.0 / 116.0)
       end
     end
   end

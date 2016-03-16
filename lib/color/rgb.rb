@@ -5,16 +5,16 @@ module Color
 
     def self.from_array(rgb_array)
       if rgb_array.length != 3
-        raise RGBArraySizeError.new("RGB array should contain 3 values")
+        raise(RGBArraySizeError, 'RGB array should contain 3 values')
       end
-      self.new(rgb_array[0], rgb_array[1], rgb_array[2])
+      new(rgb_array[0], rgb_array[1], rgb_array[2])
     end
 
     def self.from_int(rgb_int)
-      red   = (rgb_int >> 16) & 0xFF;
-      green = (rgb_int >> 8) & 0xFF;
-      blue  = rgb_int & 0xFF;
-      self.new(red, green, blue)
+      red   = (rgb_int >> 16) & 0xFF
+      green = (rgb_int >> 8) & 0xFF
+      blue  = rgb_int & 0xFF
+      new(red, green, blue)
     end
 
     def initialize(r, g, b)
@@ -37,7 +37,7 @@ module Color
     def to_int
       rgb_int = r.to_i
       rgb_int = (rgb_int << 8) + g.to_i
-      rgb_int = (rgb_int << 8) + b.to_i
+      (rgb_int << 8) + b.to_i
     end
 
     def to_a
@@ -47,17 +47,11 @@ module Color
     private
 
     def validate_values
-      if r > 255
-        raise Color::RGBArrayValueOutOfBoundsError.new("R is #{r}")
-      end
+      raise(Color::RGBArrayValueOutOfBoundsError, "R is #{r}") if r > 255
 
-      if g > 255
-        raise Color::RGBArrayValueOutOfBoundsError.new("G is #{g}")
-      end
+      raise(Color::RGBArrayValueOutOfBoundsError, "G is #{g}") if g > 255
 
-      if b > 255
-        raise Color::RGBArrayValueOutOfBoundsError.new("B is #{b}")
-      end
+      raise(Color::RGBArrayValueOutOfBoundsError, "B is #{b}") if b > 255
     end
   end
 end

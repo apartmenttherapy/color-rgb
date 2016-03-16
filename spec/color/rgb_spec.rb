@@ -10,16 +10,16 @@ describe Color::RGB do
     end
 
     it 'raises an error if  R, G, B args are greater than 255' do
-      expect{
+      expect do
         Color::RGB.new(12, 13, 355)
-      }.to raise_error(Color::RGBArrayValueOutOfBoundsError)
+      end.to raise_error(Color::RGBArrayValueOutOfBoundsError)
     end
   end
 
   context 'packing to integers' do
     let(:rgb)   { [255, 20, 147] }
     let(:color) { Color::RGB.from_array(rgb) }
-    let(:packed) { 16716947 }
+    let(:packed) { 16_716_947 }
 
     describe '.to_int' do
       it 'translates ' do
@@ -51,19 +51,21 @@ describe Color::RGB do
 
     context 'errors' do
       it 'will raise an exception if an array is < 3 values' do
-        expect{ Color::RGB.from_array([]) }.to raise_error(Color::RGBArraySizeError)
+        expect do
+          Color::RGB.from_array([])
+        end.to raise_error(Color::RGBArraySizeError)
       end
 
       it 'will raise an exception if an array is not > values' do
-        expect{
+        expect do
           Color::RGB.from_array([1, 2, 3, 4])
-        }.to raise_error(Color::RGBArraySizeError)
+        end.to raise_error(Color::RGBArraySizeError)
       end
 
       it 'will raise an exception if array values are greater than 255' do
-        expect{
+        expect do
           Color::RGB.from_array([1, 2, 333])
-        }.to raise_error(Color::RGBArrayValueOutOfBoundsError)
+        end.to raise_error(Color::RGBArrayValueOutOfBoundsError)
       end
     end
   end
@@ -74,22 +76,26 @@ describe Color::RGB do
     describe '#to_lab' do
       it 'should convert to expected values' do
         color = Color::RGB.from_array(rgb)
-        expect(color.to_lab).to eq([
+        expect(color.to_lab).to eq(
+          [
             58.57679489951133,
             -27.28307080696585,
             -15.45207927427481
-          ])
+          ]
+        )
       end
     end
 
     describe '#to_xyz' do
       it 'should convert to expected values' do
         color = Color::RGB.from_array(rgb)
-        expect(color.to_xyz).to eq([
+        expect(color.to_xyz).to eq(
+          [
             19.356083204751798,
             26.57279128189712,
             40.66810545648842
-          ])
+          ]
+        )
       end
     end
   end
