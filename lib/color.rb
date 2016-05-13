@@ -1,8 +1,8 @@
-require "color/cie_lab"
-require "color/comparison"
-require "color/rgb"
-require "color/version"
-require "color/xyz"
+require 'color/cie_lab'
+require 'color/comparison'
+require 'color/rgb'
+require 'color/version'
+require 'color/xyz'
 
 module Color
   class RGBArraySizeError < StandardError; end

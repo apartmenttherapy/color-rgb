@@ -3,25 +3,33 @@ module Color
     attr_reader :rgb_color
 
     def self.distance(rgb, rgb_match)
-      color_comparitor = self.new(rgb)
+      color_comparitor = new(rgb)
       color_comparitor.compare(rgb_match)
     end
 
     def initialize(rgb_color)
-      @rgb_color = rgb_color.is_a?(Array) ? to_rgb_instance(rgb_color) : rgb_color
+      @rgb_color = rgb_color
+      @rgb_color = to_rgb_instance(rgb_color) if rgb_color.is_a?(Array)
     end
 
     def compare(color)
       color = color.is_a?(Array) ? to_rgb_instance(color) : color
-      CIE76(rgb_color, color)
+      cie76(rgb_color, color)
     end
 
     private
 
-    def CIE76(subject, match)
-      subject_lab = subject.to_lab
-      match_lab = match.to_lab
-      Math.sqrt((subject_lab[0] - match_lab[0])**2 + (subject_lab[1] - match_lab[1])**2 + (subject_lab[2] - match_lab[2])**2)
+    def cie76(subject, match)
+      euclidean_distance(
+        subject.to_lab,
+        match.to_lab
+      )
+    end
+
+    def euclidean_distance(point_a, point_b)
+      Math.sqrt(
+        point_a.zip(point_b).map { |a, b| (a - b)**2 }.reduce(:+)
+      )
     end
 
     def to_rgb_instance(rgb_array)

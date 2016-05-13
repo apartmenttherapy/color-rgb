@@ -40,7 +40,9 @@ describe Color::XYZ do
 
   describe '#to_a' do
     it 'returns an array of x, y, z values' do
-      expect(subject.to_a).to eq([70.8691291752058, 63.27107070246611, 64.977242282389])
+      expect(
+        subject.to_a
+      ).to eq([70.8691291752058, 63.27107070246611, 64.977242282389])
     end
   end
 end

@@ -4,7 +4,7 @@ module Color
     attr_reader :r, :g, :b
 
     def self.from_rgb(rgb_color)
-      self.new(rgb_color)
+      new(rgb_color)
     end
 
     def initialize(color)
@@ -18,15 +18,15 @@ module Color
     end
 
     def x
-      @x ||= ( var_r * 0.4124 + var_g * 0.3576 + var_b * 0.1805 )
+      @x ||= (var_r * 0.4124 + var_g * 0.3576 + var_b * 0.1805)
     end
 
     def y
-      @y ||= ( var_r * 0.2126 + var_g * 0.7152 + var_b * 0.0722)
+      @y ||= (var_r * 0.2126 + var_g * 0.7152 + var_b * 0.0722)
     end
 
     def z
-      @z ||= ( var_r * 0.0193 + var_g * 0.1192 + var_b * 0.9505)
+      @z ||= (var_r * 0.0193 + var_g * 0.1192 + var_b * 0.9505)
     end
 
     def var_r
@@ -43,10 +43,10 @@ module Color
 
     def convert(value)
       variable = (send(value) / 255.0)
-      if ( variable > 0.04045)
-        variable = ( ( variable + 0.055) / 1.055) ** 2.4
+      if variable > 0.04045
+        variable = ((variable + 0.055) / 1.055)**2.4
       else
-        variable = variable / 12.92
+        variable /= 12.92
       end
       variable * 100
     end
